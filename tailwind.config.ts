@@ -1,17 +1,22 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        brand: { DEFAULT: "#FF385C", dark: "#E00B41", soft: "#FFF1F3" },
+        ink: { DEFAULT: "#222222", muted: "#717171" },
+        line: "#DDDDDD",
       },
+      fontFamily: {
+        sans: ["var(--font-geist-sans)", "Circular", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "sans-serif"],
+      },
+      boxShadow: {
+        card: "0 6px 16px rgba(0,0,0,0.12)",
+        pill: "0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05)",
+      },
+      borderRadius: { xl2: "1rem" },
     },
   },
   plugins: [],

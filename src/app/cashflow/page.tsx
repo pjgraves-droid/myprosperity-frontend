@@ -1,5 +1,5 @@
 import { api, aud, shortDate } from "@/lib/api";
-import { Badge, Card, PageHeader, Stat, Table } from "@/components/ui";
+import { Badge, Button, Card, PageHeader, Stat, Table } from "@/components/ui";
 import { CashflowBars } from "@/components/charts";
 
 export default async function CashflowPage() {
@@ -26,7 +26,7 @@ export default async function CashflowPage() {
       <PageHeader
         title="Cashflow"
         subtitle="Transactions from linked bank and card accounts"
-        action={<button className="rounded-md bg-emerald-600 text-white text-sm px-4 py-2 hover:bg-emerald-700">Add transaction</button>}
+        action={<Button>Add transaction</Button>}
       />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <Stat label="Money in" value={aud(income)} tone="up" />
@@ -40,8 +40,8 @@ export default async function CashflowPage() {
         <Card title="Transactions" className="xl:col-span-2">
           <Table head={["Date", "Description", "Account", "Category", "Amount"]}>
             {tx.map((t) => (
-              <tr key={t.ID} className={t.Reviewed ? "" : "bg-amber-50/40"}>
-                <td className="py-2.5 pr-4 whitespace-nowrap text-slate-500">{shortDate(t.Date)}</td>
+              <tr key={t.ID} className={t.Reviewed ? "" : "bg-neutral-50"}>
+                <td className="py-2.5 pr-4 whitespace-nowrap text-ink-muted">{shortDate(t.Date)}</td>
                 <td className="py-2.5 pr-4 font-medium">
                   {t.Description}
                   {!t.Reviewed && (
@@ -50,7 +50,7 @@ export default async function CashflowPage() {
                     </span>
                   )}
                 </td>
-                <td className="py-2.5 pr-4 text-slate-500">{t.AccountName}</td>
+                <td className="py-2.5 pr-4 text-ink-muted">{t.AccountName}</td>
                 <td className="py-2.5 pr-4">
                   <Badge>{t.Category.Description}</Badge>
                 </td>
@@ -61,7 +61,7 @@ export default async function CashflowPage() {
               </tr>
             ))}
           </Table>
-          <p className="text-xs text-slate-400 mt-3">
+          <p className="text-xs text-ink-muted mt-3">
             Showing {tx.length} of {page.TotalNumberOfRecords}
           </p>
         </Card>
