@@ -30,7 +30,7 @@ export default async function Dashboard() {
 
   return (
     <>
-      <PageHeader title="Good morning, Sarah" subtitle={`Your whole-of-wealth picture as at ${shortDate(new Date().toISOString())}`} />
+      <PageHeader title="Welcome back, Sarah" subtitle={`Your whole-of-wealth picture as at ${shortDate(new Date().toISOString())}`} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
         <Stat label="Net worth" value={aud(netWorth)} delta={`${change >= 0 ? "+" : ""}${aud(change)} this month`} tone={change >= 0 ? "up" : "down"} />
@@ -49,18 +49,18 @@ export default async function Dashboard() {
               <li key={g.ID}>
                 <div className="flex justify-between text-sm mb-1">
                   <span className="font-medium truncate">{g.Name}</span>
-                  <span className="text-slate-500 tabular-nums">{Math.round(g.Progress * 100)}%</span>
+                  <span className="text-ink-muted tabular-nums">{Math.round(g.Progress * 100)}%</span>
                 </div>
-                <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                <div className="h-2 rounded-full bg-neutral-100 overflow-hidden">
                   <div
-                    className={`h-full rounded-full ${g.Status === GoalStatus.Behind ? "bg-amber-400" : "bg-emerald-500"}`}
+                    className={`h-full rounded-full ${g.Status === GoalStatus.Behind ? "bg-amber-400" : "bg-brand"}`}
                     style={{ width: `${Math.min(100, g.Progress * 100)}%` }}
                   />
                 </div>
               </li>
             ))}
           </ul>
-          <Link href="/goals" className="block mt-4 text-sm text-emerald-700 hover:underline">
+          <Link href="/goals" className="block mt-4 text-sm text-ink font-semibold underline hover:text-brand">
             View all goals →
           </Link>
         </Card>
@@ -68,12 +68,12 @@ export default async function Dashboard() {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <Card title="Recent transactions" className="xl:col-span-2">
-          <ul className="divide-y divide-slate-100">
+          <ul className="divide-y divide-neutral-100">
             {txPage.Results.map((t) => (
               <li key={t.ID} className="flex items-center justify-between py-2.5 text-sm">
                 <div className="min-w-0">
                   <div className="font-medium truncate">{t.Description}</div>
-                  <div className="text-xs text-slate-500">
+                  <div className="text-xs text-ink-muted">
                     {shortDate(t.Date)} · {t.AccountName} · {t.Category.Description}
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export default async function Dashboard() {
               </li>
             ))}
           </ul>
-          <Link href="/cashflow" className="block mt-4 text-sm text-emerald-700 hover:underline">
+          <Link href="/cashflow" className="block mt-4 text-sm text-ink font-semibold underline hover:text-brand">
             All transactions →
           </Link>
         </Card>
@@ -94,7 +94,7 @@ export default async function Dashboard() {
               <Badge tone="amber">{pendingSign}</Badge>
               <span>
                 document{pendingSign === 1 ? "" : "s"} awaiting your signature.{" "}
-                <Link href="/documents" className="text-emerald-700 hover:underline">
+                <Link href="/documents" className="text-ink font-semibold underline hover:text-brand">
                   Review
                 </Link>
               </span>

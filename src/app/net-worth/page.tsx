@@ -1,5 +1,5 @@
 import { api, aud } from "@/lib/api";
-import { Badge, Card, PageHeader, Stat, Table } from "@/components/ui";
+import { Badge, Button, Card, PageHeader, Stat, Table } from "@/components/ui";
 import { AllocationChart, NetWorthChart } from "@/components/charts";
 import { COLORS } from "@/lib/colors";
 
@@ -28,7 +28,7 @@ export default async function NetWorthPage() {
       <PageHeader
         title="Net worth"
         subtitle="Assets and liabilities across all owners"
-        action={<button className="rounded-md bg-emerald-600 text-white text-sm px-4 py-2 hover:bg-emerald-700">Add item</button>}
+        action={<Button>Add item</Button>}
       />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <Stat label="Net worth" value={aud(sum(assets) - sum(liabilities))} delta={`${yoy >= 0 ? "+" : ""}${aud(yoy)} year on year`} tone={yoy >= 0 ? "up" : "down"} />
@@ -48,7 +48,7 @@ export default async function NetWorthPage() {
                   <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ background: COLORS[i % COLORS.length] }} />
                   {c.name}
                 </span>
-                <span className="tabular-nums text-slate-600">{aud(c.value)}</span>
+                <span className="tabular-nums text-ink">{aud(c.value)}</span>
               </li>
             ))}
           </ul>
@@ -76,7 +76,7 @@ export default async function NetWorthPage() {
                 <td className="py-2.5 pr-4">
                   <Badge tone="rose">{i.Category.Name}</Badge>
                 </td>
-                <td className="py-2.5 tabular-nums text-right text-rose-600">−{aud(i.Value)}</td>
+                <td className="py-2.5 tabular-nums text-right text-brand-dark">−{aud(i.Value)}</td>
               </tr>
             ))}
           </Table>
