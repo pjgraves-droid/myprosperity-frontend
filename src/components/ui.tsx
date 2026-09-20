@@ -22,7 +22,7 @@ export function Button({ children, variant = "primary" }: { children: ReactNode;
 
 export function Card({ title, children, className = "" }: { title?: string; children: ReactNode; className?: string }) {
   return (
-    <section className={`bg-white rounded-2xl border border-line ${className}`}>
+    <section className={`bg-white rounded-2xl border border-line hover:shadow-card transition-shadow ${className}`}>
       {title && <h2 className="px-6 pt-6 text-base font-semibold">{title}</h2>}
       <div className="p-6">{children}</div>
     </section>
